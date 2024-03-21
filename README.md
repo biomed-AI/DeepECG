@@ -32,11 +32,11 @@ pip install -r requirements.txt
 - `scipy(1.6.2)`
 
 ## Usage 
-### 1 Data preprocessing
+### 1. Data preprocessing
 
 In order to run **DeepECG** , we need to first create genotype data as a binary file from bfile data.
 
-**1.1 Extracting SNPs from bfile and encode SNP as (0/1/2)**
+**1.1 Extract SNPs from bfile and encode SNP as (0/1/2)**
 
 Use PLINK (v1.90) to extract specific SNPs from the genetic data stored in the "mydata" files and encode the SNPs as sample-major additive (0/1/2). “0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path".
 
@@ -45,20 +45,23 @@ cd DeepECG
 plink --bfile mydata --extract ./data/SNP_list/SNP_path ---export A --out ./data/npy_data/rawdata_path
 ```
 
-**1.2 Converting rawdata into array**
+**1.2 Convert rawdata into array**
 
 Use numpy(1.19.2) to covert the rawdata into array as a binary file in .npy format
 
 ```
-python ./preprocess.py --rawdata ./data/npy_data/rawdata_path --out ./data/npy_data/npy_path
+python ./preprocess.py --rawdata ./data/npy_data/rawdata_path --geno_out ./data/npy_data/npy_path --FID_out ./data/npy_data/FID_path
 ```
 
-### 2 Using DeepECG to predict ECG traits from genotype data
+### 2. Use DeepECG to predict ECG traits from genotype data
+
+The processed genotype data are used as input to DeepECG and output a table (column name: FID, predicted_trait) in .csv format
 
 ```
 python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
-                --input_path  ./data/npy_data/npy_path \ # input genotype data
-                --out ./data/predicted_ECG_traits \
+                --geno_data_path  ./data/npy_data/npy_path \ # input genotype data
+                --FID_data_path  ./data/npy_dataFID_path \ # input human ID
+                --out ./data/predicted_ECG_traits/feature.csv  # output ECG trait
 ```
 
 
