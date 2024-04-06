@@ -50,7 +50,7 @@ plink --bfile mydata \ # input data (plink bfile)
 	  --out ./data/npy_data/rawdata_path #output
 ```
 Running the above command will generate one output file in the output path:
-- `./data/npy_data/rawdata_path`: specific SNPs encoded as 0/1/2
+- `./data/npy_data/rawdata_path`: storing the specific SNPs encoded as 0/1/2
 
 The raw data of UKB-noECG dataset can be downloaded from https://zenodo.org/uploads/10935155
 
@@ -61,11 +61,11 @@ Use numpy(1.19.2) to covert the raw data into array as a binary file in .npy for
 ```
 python ./preprocess.py --rawdata ./data/npy_data/rawdata_path \ #input data (geneotype raw data)
 	      --geno_out ./data/npy_data/npy_path \ #output (genotype data in .npy format)
-              --FID_out ./data/npy_data/FID_path #output (human id)
+              --FID_out ./data/npy_data/FID_path #output (human ID)
 ```
 Running the above command will generate two output files in the output path:
-- `./data/npy_data/npy_path`: genotype data in .npy format
-- `./data/npy_data/FID_path`: human id
+- `./data/npy_data/npy_path`: a binary file storing the genotype data in .npy format
+- `./data/npy_data/FID_path`: a table file storing the human ID
 
 ### 2. Use DeepECG to predict ECG traits from genotype data
 
@@ -77,7 +77,8 @@ python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
                 --FID_path  ./data/npy_dataFID_path \ # input human ID
                 --out ./data/predicted_ECG_traits/feature.csv  # output ECG trait
 ```
-
+Running the above command will generate one output file in the output path:
+- `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted ECG trait
 
 ## Citation
 
