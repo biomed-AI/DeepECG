@@ -45,7 +45,7 @@ In order to run **DeepECG** , we need to first create genotype data as a binary 
 
 **1.1 Extract SNPs from bfile and encode SNP as (0/1/2)**
 
-Use PLINK (v1.90) to extract specific SNPs from the genotype data stored in the "mydata" files and encode the SNPs as sample-major additive (0/1/2). “0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path".
+Use PLINK (v1.90) to extract specific SNPs from the genotype data stored in the "mydata" files and encode the SNPs as sample-major additive (0/1/2). “0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path". PLINK (v1.90) can be downloaded from  https://www.cog-genomics.org/plink/ .
 
 ```
 cd DeepECG
@@ -84,6 +84,18 @@ python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
 ```
 Running the above command will generate one output file in the output path:
 - `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted ECG trait
+
+### 3. Use ECG traits to predict cardiovascular diseases (CVDs) risk
+
+Use ECG traits to predict cardiovascular disease
+
+```
+python CVD_predict.py  --CVD_name CVD \ # indicated cardiovascular disease for prediction
+                --ECG_trait_path  ./data/predicted_ECG_traits/feature.csv \ # input ECG traits
+                --out ./data/CVD_risk.csv  # output (predicted CVD risk)
+```
+Running the above command will generate one output file in the output path:
+- `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted CVD risk
 
 ## Citation
 
