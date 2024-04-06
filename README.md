@@ -5,9 +5,14 @@ DeepECG is a densely connected network that can be used to predicted ECG traits 
 
 **Table of Contents**
 
+* [Datasets](#Datasets)
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [Citation](#Citation)
+
+## Datasets
+
+We provide an easy access to the used datasets in the [zenodo](https://zenodo.org/uploads/10935155)
 
 ## Installation
 
