@@ -1,3 +1,5 @@
+![](figures/DeepECG.png)
+
 # DeepECG: Empowering genome-wide association study by imputing electrocardiograms from genotype in UK-biobank 
 DeepECG is a densely connected network that can be used to predicted ECG traits from genotype.
 
