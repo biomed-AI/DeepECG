@@ -47,7 +47,7 @@ plink --bfile mydata --extract ./data/SNP_list/SNP_path ---export A --out ./data
 
 **1.2 Convert rawdata into array**
 
-Use numpy(1.19.2) to covert the rawdata into array as a binary file in .npy format
+Use numpy(1.19.2) to covert the raw data into array as a binary file in .npy format
 
 ```
 python ./preprocess.py --rawdata ./data/npy_data/rawdata_path --geno_out ./data/npy_data/npy_path --FID_out ./data/npy_data/FID_path
@@ -59,8 +59,8 @@ The processed genotype data are used as input to DeepECG and output a table (col
 
 ```
 python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
-                --geno_data_path  ./data/npy_data/npy_path \ # input genotype data
-                --FID_data_path  ./data/npy_dataFID_path \ # input human ID
+                --geno_path  ./data/npy_data/npy_path \ # input genotype data
+                --FID_path  ./data/npy_dataFID_path \ # input human ID
                 --out ./data/predicted_ECG_traits/feature.csv  # output ECG trait
 ```
 
