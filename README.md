@@ -6,7 +6,7 @@ DeepECG is a densely connected network that can be used to predicted ECG traits 
 **Table of Contents**
 
 * [Installation](#Installation)
-* [Data preprocessing](#Data preprocessing)
+* [Data preprocessing](##Data preprocessing)
 * [Predicting ECG traits by DeepECG](#Predicting ECG traits by DeepECG)
 * [Applications of DeepECG in CVDs prediction and GWAS](#Applications of DeepECG in CVDs prediction and GWAS)
 * [Citation](#Citation)
