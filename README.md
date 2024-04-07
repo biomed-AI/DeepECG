@@ -51,7 +51,7 @@ Running the above command will generate one output file in the output path:
 
 The example raw data can be downloaded from https://zenodo.org/uploads/10935155
 
-### 1.2 Convert rawdata into array
+### 1.2 Convert raw data into binary file in .npy format
 
 ![](figures/Step1.2.png)
 
