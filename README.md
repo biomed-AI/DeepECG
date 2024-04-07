@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 PLINK (v1.90) can be downloaded from  https://www.cog-genomics.org/plink/ .
 
-## Data preprocessing
+##Data preprocessing
 
 In order to run **DeepECG** , we need to first create genotype data as a binary file from bfile data.
 
