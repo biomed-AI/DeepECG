@@ -3,14 +3,6 @@
 # DeepECG: Empowering genome-wide association study by imputing electrocardiograms from genotype in UK-biobank 
 DeepECG is a densely connected network that can be used to predicted ECG traits from genotype.
 
-**Table of Contents**
-
-* [Installation](#Installation)
-* [Datapreprocessing](#Datapreprocessing)
-* [Predicting ECG traits by DeepECG](#Predicting ECG traits by DeepECG)
-* [Applications of DeepECG in CVDs prediction and GWAS](#Applications of DeepECG in CVDs prediction and GWAS)
-* [Citation](#Citation)
-
 ## Installation
 
 To reproduce **DeepECG**, we suggest first create a conda environment by:
@@ -37,7 +29,7 @@ pip install -r requirements.txt
 
 PLINK (v1.90) can be downloaded from  https://www.cog-genomics.org/plink/ .
 
-## Datapreprocessing
+## 1. Data preprocessing
 
 In order to run **DeepECG** , we need to first create genotype data as a binary file from bfile data.
 
