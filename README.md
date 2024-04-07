@@ -37,7 +37,7 @@ In order to run **DeepECG** , we need to first create genotype data as a binary 
 
 ![](figures/Step1.1.png)
 
-Use PLINK (v1.90) to extract specific SNPs from the genotype data stored in bfile format.These SNPs are encoded as sample-major additive **(0/1/2)**. Here,“0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path". 
+Use PLINK (v1.90) to extract specific SNPs from the genotype data stored in bfile format. These SNPs are encoded as sample-major additive **(0/1/2)**. Here,“0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path". The code is:
 
 ```
 cd DeepECG
@@ -55,7 +55,7 @@ The example raw data can be downloaded from https://zenodo.org/uploads/10935155
 
 ![](figures/Step1.2.png)
 
-The genotype data pre-processed by PLINK will be converted into an array, a binary file in “.npy” format by  numpy(1.19.2).
+The genotype data pre-processed by PLINK will be converted into an array, a binary file in “.npy” format by  numpy(1.19.2). The code is:
 
 ```
 python ./preprocess.py --rawdata ./data/npy_data/rawdata_path \ #input data (geneotype raw data)
@@ -70,7 +70,7 @@ By running the above command, two files will be generated under specific path:
 
 ![](figures/Step2.png)
 
-The processed genotype data are used as input to DeepECG and output a table (column name: FID, predicted_trait) in .csv format
+The processed genotype data are used as input to DeepECG. DeepECG will output a table (column name: FID, predicted_trait) in .csv format. The first column of output file is the sample ID, the second column is predicted ECG trait. The code is:
 
 ```
 python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
