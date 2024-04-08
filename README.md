@@ -1,7 +1,7 @@
 ![](figures/Pipeline.png)
 
 # DeepECG: Empowering genome-wide association study by imputing electrocardiograms from genotype in UK-biobank 
-DeepECG is a densely connected network for ECG traits prediction using genotype data. The predicted ECG traits from DeepECG can be used to predict cardiovascular diseases (CVDs) risk and perform GWAS analysis.
+DeepECG is a densely connected network for ECG traits prediction using genotype data. The predicted ECG traits by DeepECG can be used to predict cardiovascular diseases (CVDs) risk and perform GWAS.
 
 ## Installation
 
@@ -31,13 +31,12 @@ PLINK (v1.90) can be downloaded from  https://www.cog-genomics.org/plink/ .
 
 ## 1. Data preprocessing
 
-In order to run **DeepECG** , we need to first create genotype data as a binary file from bfile data.
 
 ### 1.1 Extracting SNPs from bfile and encode SNP as (0/1/2)
 
 ![](figures/Step1.1.png)
 
-Use PLINK (v1.90) to extract specific SNPs from the genotype data stored in bfile format. These SNPs are encoded as sample-major additive **(0/1/2)**. Here,“0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path". The code is:
+PLINK (v1.90) is used to extract specific SNPs required for running DeepECG from the genotype data in bfile format. These SNPs are encoded as sample-major additive **(0/1/2)**. Here,“0” refers to homozygous for the reference allele, “1” refers to heterozygous for the alternative allele, and “2” refers to the homozygous for the alternative allele. The results will be saved in "rawdata_path". The code is:
 
 ```
 cd DeepECG
@@ -49,7 +48,7 @@ plink --bfile mydata \ # input data (plink bfile)
 By running the above code, the output file will be stored in one specific path:
 - `./data/npy_data/rawdata_path`: storing the specific SNPs encoded as 0/1/2
 
-The example raw data can be downloaded from https://zenodo.org/uploads/10935155
+An example raw data can be downloaded from https://zenodo.org/uploads/10935155
 
 ### 1.2 Convert raw data into binary file in .npy format
 
@@ -70,7 +69,7 @@ By running the above command, two files will be generated under specific path:
 
 ![](figures/Step2.png)
 
-The processed genotype data are used as input to DeepECG. DeepECG will output a table (column name: FID, predicted_trait) in .csv format. The first column of output file is the sample ID, the second column is predicted ECG trait. The code is:
+The processed genotype data are used as input of DeepECG. DeepECG will output a table (column name: FID, predicted_trait) in .csv format. The first column of output file is the sample ID, the second column is predicted value (ranging from -1, 1) of ECG trait. The code is:
 
 ```
 python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
@@ -79,7 +78,9 @@ python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
                 --out ./data/predicted_ECG_traits/feature.csv  # output ECG trait
 ```
 Running the above command will generate one output file in the output path:
-- `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted ECG trait
+- `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted ECG trait.
+
+The "ECG_trait" is the name of the ECG trait (For example, spQRSTa, III_S) required input of "main.py". The name of the ECG trait can be found downloaded from "https://zenodo.org/uploads/10935155". 
 
 ## 3. Applications of DeepECG in CVDs prediction and GWAS
 
@@ -87,20 +88,27 @@ Running the above command will generate one output file in the output path:
 
 ![](figures/Step3.1.png)
 
-The output file of “main.py” is input into cvd_pred.py by running the code:
+The output file of “main.py” is input into "cvd_pred.py" to predict the risk of CVDs by running the code:
 ```
-python CVD_predict.py  --CVD_name CVD \ # indicated cardiovascular disease for prediction
+python CVD_predict.py  --CVD_name CVD \ # the name of cardiovascular disease for prediction
                 --ECG_trait_path  ./data/predicted_ECG_traits/feature.csv \ # input ECG traits
                 --out ./data/CVD_risk.csv  # output (predicted CVD risk)
 ```
 Running the above command will generate one output file in the output path:
-- `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted CVD risk. The first column is human ID, the second column is predicted ECG trait.
+- `./data/predicted_ECG_traits/feature.csv`: a table storing the predicted CVD risk. The first column is human ID, the second column is predicted risk of CVDs.
+
+The code "cvd_pred.py" is developed for predicting nine types of diseases including essential hypertension (EH), angina pectoris (AP), myocardial infarction (MI), ischaemic heart disease (IHD), Atrial fibrillation (AF), Aortic aneurysm (AA), Cardiomyopathy (CM), Coronary atherosclerosis (CA), and all-cause Heart Failure (HF).
+The "CVD_name" is required input into "cvd_pred.py", which is the short name of disease.
+
+
+![image](https://github.com/biomed-AI/DeepECG/assets/3578754/9af27084-3cd3-47c3-8377-dcf45514a4a9)
+
 
 ### 3.2 Use ECG traits to perform GWAS analysis
 
 ![](figures/Step3.2.png)
 
-When DeepECG has been used in a large population for predicting ECG traits from genotype, the predicted ECG traits can be used in GWAS. The code of BOLT-LMM (v2.3.5) for GWAS analysis can be downloaded from https://alkesgroup.broadinstitute.org/BOLT-LMM/BOLT-LMM_manual.html, and BOLT-LMM can be run by the code:
+When DeepECG has been used in a large population for predicting ECG traits from genotype, the predicted ECG traits is able to be used for GWAS to identify novel SNP assocations. The code of BOLT-LMM (v2.3.5) for GWAS is availabe at  https://alkesgroup.broadinstitute.org/BOLT-LMM/BOLT-LMM_manual.html, and BOLT-LMM can be run by the code:
 
 ```
 ./BOLT-LMM_v2.3.5/bolt --bfile=$file_bfile \ # input genotype data
