@@ -80,7 +80,7 @@ python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
 Running the above command will generate one output file in the output path:
 - `./data/predicted_ECG_traits/feature.csv`: a table file storing the predicted ECG trait.
 
-The "ECG_trait" is the name of the ECG trait (For example, spQRSTa, III_S) required input of "main.py". The name of the ECG trait can be found downloaded from "https://zenodo.org/uploads/10935155". 
+The "ECG_trait" is the name of the ECG trait (For example, spQRSTa, III_S) required input of "main.py". The name of the ECG trait can be found from "https://zenodo.org/uploads/10935155". 
 
 ## 3. Applications of DeepECG in CVDs prediction and GWAS
 
