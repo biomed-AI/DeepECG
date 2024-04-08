@@ -48,7 +48,7 @@ plink --bfile mydata \ # input data (plink bfile)
 By running the above code, the output file will be stored in one specific path:
 - `./data/npy_data/rawdata_path`: storing the specific SNPs encoded as 0/1/2
 
-An example raw data can be downloaded from https://zenodo.org/uploads/10935155
+An example raw data can be downloaded from “./data/Example_spQRSTa.raw”
 
 ### 1.2 Convert raw data into binary file in .npy format
 
