@@ -32,7 +32,7 @@ PLINK (v1.90) can be downloaded from  https://www.cog-genomics.org/plink/ .
 ## 1. Data preprocessing
 
 
-### 1.1 Extracting SNPs from bfile and encode SNP as (0/1/2)
+### 1.1 Extracting SNPs from bfile and encoding SNP as (0/1/2)
 
 ![](figures/Step1.1.png)
 
