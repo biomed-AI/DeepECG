@@ -101,7 +101,7 @@ The code "cvd_pred.py" is developed for predicting nine types of diseases includ
 The "CVD_name" is required input into "cvd_pred.py", which is the short name of disease.
 
 
-![image](https://github.com/biomed-AI/DeepECG/assets/3578754/9af27084-3cd3-47c3-8377-dcf45514a4a9)
+
 
 
 ### 3.2 Use ECG traits to perform GWAS analysis
