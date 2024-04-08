@@ -59,11 +59,11 @@ The genotype data pre-processed by PLINK will be converted into an array, a bina
 ```
 python ./preprocess.py --rawdata ./data/npy_data/rawdata_path \ #input data (geneotype raw data)
 	      --geno_out ./data/npy_data/npy_path \ #output (genotype data in .npy format)
-              --FID_out ./data/npy_data/FID_path #output (human ID)
+              --FID_out ./data/npy_data/FID_path #output (sample ID)
 ```
 By running the above command, two files will be generated under specific path: 
 - `./data/npy_data/npy_path`: a binary file storing the genotype data in .npy format
-- `./data/npy_data/FID_path`: a table file storing the human ID
+- `./data/npy_data/FID_path`: a table file storing the sample ID
 
 ## 2. Predicting ECG traits by DeepECG
 
@@ -74,7 +74,7 @@ The processed genotype data are used as input of DeepECG. DeepECG will output a 
 ```
 python main.py  --ECG_trait feature \ # indicated ECG trait for prediction
                 --geno_path  ./data/npy_data/npy_path \ # input genotype data
-                --FID_path  ./data/npy_dataFID_path \ # input human ID
+                --FID_path  ./data/npy_dataFID_path \ # input sample ID
                 --out ./data/predicted_ECG_traits/feature.csv  # output ECG trait
 ```
 Running the above command will generate one output file in the output path:
@@ -95,7 +95,7 @@ python CVD_predict.py  --CVD_name CVD \ # the name of cardiovascular disease for
                 --out ./data/CVD_risk.csv  # output (predicted CVD risk)
 ```
 Running the above command will generate one output file in the output path:
-- `./data/predicted_ECG_traits/feature.csv`: a table storing the predicted CVD risk. The first column is human ID, the second column is predicted risk of CVDs.
+- `./data/predicted_ECG_traits/feature.csv`: a table storing the predicted CVD risk. The first column is the sample ID, and the second column is the predicted risk of the disease.
 
 The code "cvd_pred.py" is developed for predicting nine types of diseases including essential hypertension (EH), angina pectoris (AP), myocardial infarction (MI), ischaemic heart disease (IHD), Atrial fibrillation (AF), Aortic aneurysm (AA), Cardiomyopathy (CM), Coronary atherosclerosis (CA), and all-cause Heart Failure (HF).
 The "CVD_name" is required input into "cvd_pred.py", which is the short name of disease.
